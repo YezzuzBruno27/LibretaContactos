@@ -23,9 +23,12 @@ public class Agenda implements IAgenda {
     }
     @Override
     public Contact searchContact(int id){
-        Contact contact = new Contact();
-        System.out.println("");
-        return contact;
+        for(Contact contact : contacts){
+            if(contact.id == id){
+                return contact;
+            }
+        }
+        return null;
     }
     @Override
     public void deleteContact(){
