@@ -49,4 +49,17 @@ public class Contact {
     public void setOccupation(String occupation) {
         this.occupation = occupation;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Contact{");
+        sb.append("id=").append(id);
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", number='").append(number).append('\'');
+        sb.append(", age=").append(age);
+        sb.append(", occupation='").append(occupation).append('\'');
+        sb.append(", dateAdded=").append(dateAdded);
+        sb.append('}');
+        return sb.toString();
+    }
 }
