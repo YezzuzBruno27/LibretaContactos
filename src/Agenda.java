@@ -28,11 +28,17 @@ public class Agenda implements IAgenda {
                 return contact;
             }
         }
+        System.out.println("The contact has ");
         return null;
     }
     @Override
-    public void deleteContact(){
-
+    public void deleteContact(int id){
+        Contact contact = searchContact(id);
+        if(contact != null){
+            System.out.println("The contact was successfully deleted");
+            contacts.remove(contact);
+        }
+        System.out.println("The contact has not been found");
     }
 
     @Override
