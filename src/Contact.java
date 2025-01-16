@@ -1,17 +1,21 @@
+import java.time.LocalDate;
+
 public class Contact {
     int id;
     String name;
     String number;
     int age;
     String occupation;
-    String dateAdded;
+    LocalDate dateAdded;
 
     public Contact(){}
-    public Contact(String name, String number, int age, String occupation) {
+    public Contact(int id,String name, String number, int age, String occupation, LocalDate date) {
+        this.id = id;
         this.name = name;
         this.number = number;
         this.age = age;
         this.occupation = occupation;
+        this.dateAdded = date;
     }
 
     public String getName() {
