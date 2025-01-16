@@ -15,12 +15,14 @@ public class Agenda implements IAgenda {
         String number = input.nextLine();
         System.out.println("Enter contact's age: ");
         int age = input.nextInt();
+        input.nextLine();//se utiliza para consumir el salto de linea restante
         System.out.println("Enter contact's ocuppation: ");
         String occupation = input.nextLine();
 
         LocalDate date = LocalDate.now();
         Contact contact = new Contact(++numberContacts, name, number, age, occupation, date);
         contacts.add(contact);
+        System.out.println("Contact has been successfully created!");
     }
     @Override
     public Contact searchContact(int id){
@@ -29,7 +31,7 @@ public class Agenda implements IAgenda {
                 return contact;
             }
         }
-        System.out.println("The contact has ");
+        System.out.println("The contact has not been found");
         return null;
     }
     @Override
@@ -39,7 +41,6 @@ public class Agenda implements IAgenda {
             System.out.println("The contact was successfully deleted");
             contacts.remove(contact);
         }
-        System.out.println("The contact has not been found");
     }
 
     @Override
