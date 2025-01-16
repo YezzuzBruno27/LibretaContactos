@@ -17,11 +17,16 @@ public class Main {
             switch (option){
                 case 1 -> listContacts.createContact();
                 case 2 -> {
+                    System.out.println("Enter contact's id: ");
                     int id = input.nextInt();
-                    listContacts.searchContact(id);
+                    input.nextLine();
+                    Contact contact = listContacts.searchContact(id);
+                    System.out.println(contact);
                 }
                 case 3 -> {
+                    System.out.println("Enter contact's id: ");
                     int id = input.nextInt();
+                    input.nextLine();
                     listContacts.deleteContact(id);
                 }
                 case 4 -> listContacts.listContacts();

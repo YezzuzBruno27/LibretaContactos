@@ -60,6 +60,7 @@ public class Contact {
         sb.append(", occupation='").append(occupation).append('\'');
         sb.append(", dateAdded=").append(dateAdded);
         sb.append('}');
+        sb.append("\n########################\n");
         return sb.toString();
     }
 }

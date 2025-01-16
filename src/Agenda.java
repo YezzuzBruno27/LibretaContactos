@@ -40,6 +40,7 @@ public class Agenda implements IAgenda {
         if(contact != null){
             System.out.println("The contact was successfully deleted");
             contacts.remove(contact);
+            numberContacts--;
         }
     }
 
@@ -51,7 +52,6 @@ public class Agenda implements IAgenda {
         }
         for (Contact contact : contacts){
             System.out.println(contact);
-            System.out.println("########################");
         }
     }
 
