@@ -5,7 +5,7 @@ public class Agenda implements IAgenda {
     static ArrayList<Contact> contacts = new ArrayList<Contact>();
     @Override
     public void createContact(){
-        System.out.println("Hola mundo");
+
     }
     @Override
     public Contact searchContact(int id){
