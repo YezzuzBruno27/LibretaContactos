@@ -1,11 +1,11 @@
-import java.awt.event.ContainerAdapter;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Agenda implements IAgenda {
     static int numberContacts = 0;
-    static ArrayList<Contact> contacts = new ArrayList<Contact>();
+    static ArrayList<Contact> contacts = new ArrayList<>();
     @Override
     public void createContact(){
         Scanner input = new Scanner(System.in);
@@ -13,9 +13,20 @@ public class Agenda implements IAgenda {
         String name = input.nextLine();
         System.out.println("Enter contact's number: ");
         String number = input.nextLine();
-        System.out.println("Enter contact's age: ");
-        int age = input.nextInt();
-        input.nextLine();//se utiliza para consumir el salto de linea restante
+        boolean ageInvalid = true;
+        int age = 0;
+        while(ageInvalid){
+            try{
+                System.out.println("Enter contact's age: ");
+                age = input.nextInt();
+                input.nextLine();//se utiliza para consumir el salto de linea restante
+                ageInvalid = false;
+            }catch (InputMismatchException e){
+                System.out.println("Error: The data (age) must be an integer... try again!");
+                input.nextLine();
+            }
+        }
+
         System.out.println("Enter contact's ocuppation: ");
         String occupation = input.nextLine();
 
