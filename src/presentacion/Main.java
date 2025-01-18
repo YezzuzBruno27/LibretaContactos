@@ -1,5 +1,6 @@
 package presentacion;
 
+import service.IServiceAgenda;
 import service.ServiceAgendaList;
 import domain.Contact;
 
@@ -8,7 +9,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        ServiceAgendaList listContacts = new ServiceAgendaList();
+        IServiceAgenda agenda = new ServiceAgendaList();
         Scanner input = new Scanner(System.in);
         int option = 1;
         do{
@@ -28,13 +29,13 @@ public class Main {
                 continue; // para mostrar de nuevo el menu
             }
             switch (option){
-                case 1 -> listContacts.createContact();
+                case 1 -> agenda.createContact();
                 case 2 -> {
                     try{
                         System.out.println("Enter contact's id: ");
                         int id = input.nextInt();
                         input.nextLine();
-                        Contact contact = listContacts.searchContact(id);
+                        Contact contact = agenda.searchContact(id);
                         System.out.println(contact);
                     }catch(InputMismatchException e){
                         System.out.println("Error: The data must be an integer");
@@ -46,12 +47,12 @@ public class Main {
                         System.out.println("Enter contact's id: ");
                         int id = input.nextInt();
                         input.nextLine();
-                        listContacts.deleteContact(id);
+                        agenda.deleteContact(id);
                     }catch (InputMismatchException e){
                         System.out.println("Error: The data must be an integer");
                     }
                 }
-                case 4 -> listContacts.listContacts();
+                case 4 -> agenda.listContacts();
                 case 5 -> System.out.println("Exiting the program!");
                 default -> System.out.println("Invalid option ... Try again!");
             }
