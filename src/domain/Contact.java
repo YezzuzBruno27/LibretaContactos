@@ -1,3 +1,5 @@
+package domain;
+
 import java.time.LocalDate;
 
 public class Contact {
@@ -16,6 +18,14 @@ public class Contact {
         this.age = age;
         this.occupation = occupation;
         this.dateAdded = date;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -52,7 +62,7 @@ public class Contact {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Contact{");
+        final StringBuilder sb = new StringBuilder("domain.Contact{");
         sb.append("id=").append(id);
         sb.append(", name='").append(name).append('\'');
         sb.append(", number='").append(number).append('\'');

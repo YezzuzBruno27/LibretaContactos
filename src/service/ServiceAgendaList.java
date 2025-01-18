@@ -1,9 +1,13 @@
+package service;
+
+import domain.Contact;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Agenda implements IAgenda {
+public class ServiceAgendaList implements IServiceAgenda {
     static int numberContacts = 0;
     static ArrayList<Contact> contacts = new ArrayList<>();
     @Override
@@ -38,7 +42,7 @@ public class Agenda implements IAgenda {
     @Override
     public Contact searchContact(int id){
         for(Contact contact : contacts){
-            if(contact.id == id){
+            if(contact.getId() == id){
                 return contact;
             }
         }

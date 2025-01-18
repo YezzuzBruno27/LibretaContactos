@@ -1,6 +1,8 @@
-import java.util.ArrayList;
+package service;
 
-public interface IAgenda {
+import domain.Contact;
+
+public interface IServiceAgenda {
     void createContact();
     Contact searchContact(int id);
     void deleteContact(int id);

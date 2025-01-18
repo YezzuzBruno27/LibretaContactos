@@ -1,9 +1,14 @@
+package presentacion;
+
+import service.ServiceAgendaList;
+import domain.Contact;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Agenda listContacts = new Agenda();
+        ServiceAgendaList listContacts = new ServiceAgendaList();
         Scanner input = new Scanner(System.in);
         int option = 1;
         do{
@@ -35,7 +40,6 @@ public class Main {
                         System.out.println("Error: The data must be an integer");
                         input.nextLine(); // para consumir el caracter de salto de linea
                     }
-
                 }
                 case 3 -> {
                     try{
