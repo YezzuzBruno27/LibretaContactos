@@ -64,7 +64,7 @@ public class ServiceAgendaFile implements IServiceAgenda{
         boolean exist = file.exists();
         try{
             PrintWriter contactsFile = new PrintWriter(new FileWriter(file, exist));
-            contactsFile.println(contact);
+            contactsFile.println(contact.generateStringContact());
             contactsFile.close();
             System.out.println("The contact has been saved to the disk");
         } catch (IOException e){

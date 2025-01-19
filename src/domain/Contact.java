@@ -72,4 +72,21 @@ public class Contact {
         sb.append('}');
         return sb.toString();
     }
+
+    public String generateStringContact(){
+        StringBuilder contact = new StringBuilder();
+        contact.append(id);
+        contact.append(",");
+        contact.append(name);
+        contact.append(",");
+        contact.append(number);
+        contact.append(",");
+        contact.append(age);
+        contact.append(",");
+        contact.append(occupation);
+        contact.append(",");
+        contact.append(dateAdded);
+
+        return contact.toString();
+    }
 }
