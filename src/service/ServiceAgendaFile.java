@@ -31,15 +31,14 @@ public class ServiceAgendaFile implements IServiceAgenda{
         try{
             BufferedReader agenda = new BufferedReader(new FileReader(file));
             String line = agenda.readLine();
-            int count = 0;
             while(line != null){
-                    String dataContact[] = line.split(",");
-                    Contact contact = new Contact(Integer.parseInt(dataContact[0]),dataContact[1],dataContact[2],Integer.parseInt(dataContact[3]),dataContact[4],LocalDate.parse(dataContact[5]));
-                    contacts.add(contact);
+                String dataContact[] = line.split(",");
+                Contact contact = new Contact(Integer.parseInt(dataContact[0]),dataContact[1],dataContact[2],Integer.parseInt(dataContact[3]),dataContact[4],LocalDate.parse(dataContact[5]));
+                contacts.add(contact);
                 line = agenda.readLine();
-                count++;
+                numberContacts++;
             }
-            if(count == 0){
+            if(numberContacts == 0){
                 System.out.println("The list of contacts is empty");
             }else{
                 System.out.println("The contacts has been obtained successfully");
@@ -94,6 +93,12 @@ public class ServiceAgendaFile implements IServiceAgenda{
 
     @Override
     public Contact searchContact(int id) {
+        for(Contact contact : contacts){
+            if(contact.getId() == id){
+                return contact;
+            }
+        }
+        System.out.println("The contact has not been found");
         return null;
     }
 
