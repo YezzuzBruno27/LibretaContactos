@@ -109,6 +109,12 @@ public class ServiceAgendaFile implements IServiceAgenda{
 
     @Override
     public void listContacts() {
-
+        if(contacts.size() == 0){
+            System.out.println("The contact list is empty!");
+            return;
+        }
+        for (Contact contact : contacts){
+            System.out.println(contact);
+        }
     }
 }
