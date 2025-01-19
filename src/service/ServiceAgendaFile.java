@@ -2,10 +2,7 @@ package service;
 
 import domain.Contact;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -19,7 +16,7 @@ public class ServiceAgendaFile implements IServiceAgenda{
     public ServiceAgendaFile(){
         File file = new File(NAME_FILE);
         if(file.exists()){
-            //contacts = getContacts(file);
+            getContacts(file);
         }else{
             try{
                 PrintWriter fileCreated = new PrintWriter(new FileWriter(file));
@@ -30,6 +27,29 @@ public class ServiceAgendaFile implements IServiceAgenda{
             }
         }
     }
+    private void getContacts(File file){
+        try{
+            BufferedReader agenda = new BufferedReader(new FileReader(file));
+            String line = agenda.readLine();
+            int count = 0;
+            while(line != null){
+                    String dataContact[] = line.split(",");
+                    Contact contact = new Contact(Integer.parseInt(dataContact[0]),dataContact[1],dataContact[2],Integer.parseInt(dataContact[3]),dataContact[4],LocalDate.parse(dataContact[5]));
+                    contacts.add(contact);
+                line = agenda.readLine();
+                count++;
+            }
+            if(count == 0){
+                System.out.println("The list of contacts is empty");
+            }else{
+                System.out.println("The contacts has been obtained successfully");
+            }
+            agenda.close();
+        }catch(IOException e){
+            System.out.println("Error" + e.getMessage());
+        }
+    }
+
     @Override
     public void createContact() {
         Scanner input = new Scanner(System.in);
