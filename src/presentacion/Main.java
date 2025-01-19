@@ -1,6 +1,7 @@
 package presentacion;
 
 import service.IServiceAgenda;
+import service.ServiceAgendaFile;
 import service.ServiceAgendaList;
 import domain.Contact;
 
@@ -9,7 +10,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        IServiceAgenda agenda = new ServiceAgendaList();
+        IServiceAgenda agenda = new ServiceAgendaFile();
         Scanner input = new Scanner(System.in);
         int option = 1;
         do{
