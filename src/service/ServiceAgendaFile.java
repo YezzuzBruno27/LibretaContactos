@@ -3,6 +3,8 @@ package service;
 import domain.Contact;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -11,7 +13,9 @@ import java.util.Scanner;
 public class ServiceAgendaFile implements IServiceAgenda{
     private final String NAME_FILE = "agenda.txt";
     private int numberContacts = 0;
+    private int currentIndex = 0;
     ArrayList<Contact> contacts = new ArrayList<>();
+    ArrayList<Integer> indexDelete = new ArrayList<>();
 
     public ServiceAgendaFile(){
         File file = new File(NAME_FILE);
@@ -34,6 +38,7 @@ public class ServiceAgendaFile implements IServiceAgenda{
             while(line != null){
                 String dataContact[] = line.split(",");
                 Contact contact = new Contact(Integer.parseInt(dataContact[0]),dataContact[1],dataContact[2],Integer.parseInt(dataContact[3]),dataContact[4],LocalDate.parse(dataContact[5]));
+                currentIndex = Integer.parseInt(dataContact[0]);
                 contacts.add(contact);
                 line = agenda.readLine();
                 numberContacts++;
@@ -73,7 +78,7 @@ public class ServiceAgendaFile implements IServiceAgenda{
         String occupation = input.nextLine();
 
         LocalDate date = LocalDate.now();
-        Contact contact = new Contact(++numberContacts, name, number, age, occupation, date);
+        Contact contact = new Contact(++currentIndex, name, number, age, occupation, date);
         contacts.add(contact);
         saveTheContactInTheFile(contact);
     }
@@ -104,7 +109,33 @@ public class ServiceAgendaFile implements IServiceAgenda{
 
     @Override
     public void deleteContact(int id) {
-
+        Contact contact = searchContact(id);
+        if(contact != null){
+            contacts.remove(contact);
+            try{
+                File originalFile = new File(NAME_FILE);
+                File tmp = new File("temp.txt");
+                long numberLines = Files.lines(Paths.get(NAME_FILE)).count();
+                BufferedReader reader = new BufferedReader(new FileReader(originalFile));
+                PrintWriter writer = new PrintWriter(new FileWriter(tmp));
+                for(int i = 1; i <= numberLines;i++){
+                    String line = reader.readLine();
+                    String[] words = line.split(",");
+                    String idFile = words[0];
+                    if(Integer.parseInt(idFile) != contact.getId()){
+                        writer.println(line);
+                    }
+                }
+                reader.close();
+                writer.close();
+                originalFile.delete();
+                tmp.renameTo(originalFile);
+                numberContacts--;
+                System.out.println("The contact was successfully deleted");
+            }catch (IOException e){
+                System.out.println("ERROR: "+ e.getMessage());
+            }
+        }
     }
 
     @Override
